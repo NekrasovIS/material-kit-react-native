@@ -8,8 +8,8 @@ import Button from '../src/components/Button'
 import TextInput from '../src/components/TextInput'
 import BackButton from '../components/BackButton'
 import { theme } from '../src/core/theme'
-import { emailValidator } from '../src/helpers/emailValidator'
-import { passwordValidator } from '../src/helpers/passwordValidator'
+import { emailValidator } from '../helpers/emailValidator'
+import { passwordValidator } from '../helpers/passwordValidator'
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })

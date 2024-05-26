@@ -2,7 +2,7 @@ import React from 'react'
 import Background from '../components/Background'
 import Logo from '../components/Logo'
 import Header from '../src/components/Header'
-import Paragraph from '../src/components/Paragraph'
+import Paragraph from '../components/Paragraph'
 import Button from '../src/components/Button'
 
 export default function Dashboard({ navigation }) {
