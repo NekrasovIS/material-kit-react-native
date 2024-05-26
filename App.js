@@ -1,15 +1,3 @@
-/*!
-
- =========================================================
- * Material Kit React Native - v1.10.1
- =========================================================
- * Product Page: https://demos.creative-tim.com/material-kit-react-native/
- * Copyright 2019 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-kit-react-native/blob/master/LICENSE)
- =========================================================
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { useState, useEffect, useCallback } from "react";
 import { Platform, StatusBar, Image } from "react-native";
 import { Asset } from "expo-asset";
@@ -18,12 +6,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import { Images, products, materialTheme } from "./constants/";
 import Screens from "./navigation/Screens";
-
-// Before rendering any navigation stack
+// Перед рендерингом любого навигационного стека
 import { enableScreens } from "react-native-screens";
 enableScreens();
 
-// cache app images
+// кэширование изображений приложений
 const assetImages = [
   Images.Pro,
   Images.Profile,
@@ -31,7 +18,7 @@ const assetImages = [
   Images.Onboarding,
 ];
 
-// cache product images
+// кэширование изображений продуктов
 products.map((product) => assetImages.push(product.image));
 
 function cacheImages(images) {
@@ -50,12 +37,12 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        //Load Resources
+        //Загружать ресурсы
         await _loadResourcesAsync();
       } catch (e) {
         console.warn(e);
       } finally {
-        // Tell the application to render
+        // Сообщите приложению о необходимости рендеринга
         setAppIsReady(true);
       }
     }
@@ -75,7 +62,6 @@ export default function App() {
   if (!appIsReady) {
     return null;
   }
-
   return (
     <NavigationContainer onReady={onLayoutRootView}>
       <GalioProvider theme={materialTheme}>
