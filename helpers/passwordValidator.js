@@ -1,5 +1,13 @@
+// Экспортируемая функция для валидации пароля
 export function passwordValidator(password) {
-  if (!password) return "Password can't be empty."
-  if (password.length < 5) return 'Password must be at least 5 characters long.'
-  return ''
+  // Проверка на пустой пароль
+  if (!password) {
+    return "Пароль не может быть пустым."; // Сообщение об ошибке, если пароль пустой
+  }
+  // Проверка длины пароля
+  if (password.length < 5) {
+    return 'Пароль должен состоять из 5 и более символов.'; // Сообщение об ошибке, если длина пароля меньше 5 символов
+  }
+  // Если пароль удовлетворяет всем условиям, возвращаем пустую строку
+  return '';
 }

@@ -2,20 +2,20 @@ import React from "react";
 import { TouchableWithoutFeedback, ScrollView, StyleSheet, Image } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import { useSafeArea } from "react-native-safe-area-context";
-
 import { Icon, Drawer as DrawerCustomItem } from '../components/';
 import { Images, materialTheme } from "../constants/";
-
-
+// Компонент CustomDrawerContent: Основной компонент, который принимает несколько пропсов
 function CustomDrawerContent({
-  drawerPosition,
-  navigation,
-  profile,
-  focused,
-  state,
-  ...rest
+  drawerPosition, // Позиция бокового меню (слева или справа)
+  navigation, // Объект навигации
+  profile, // Данные профиля пользователя
+  focused, // Индикатор фокусировки на элементе
+  state, // Состояние навигации
+  ...rest // Остальные пропсы
 }) {
-  const insets = useSafeArea();
+  const insets = useSafeArea(); // Учет безопасных зон устройства
+
+  // Перечень экранов
   const screens = [
     "Home",
     "Woman",
@@ -26,11 +26,13 @@ function CustomDrawerContent({
     "Settings",
     "Components"
   ];
+
   return (
     <Block
       style={styles.container}
       forceInset={{ top: "always", horizontal: "never" }}
     >
+      {/* Заголовок меню с информацией профиля */}
       <Block flex={0.25} style={styles.header}>
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate("Profile")}
@@ -57,6 +59,8 @@ function CustomDrawerContent({
           </Text>
         </Block>
       </Block>
+
+      {/* Навигационные элементы */}
       <Block flex style={{ paddingLeft: 7, paddingRight: 14 }}>
         <ScrollView
           contentContainerStyle={[
@@ -74,28 +78,29 @@ function CustomDrawerContent({
                 title={item}
                 key={index}
                 navigation={navigation}
-                focused={state.index === index ? true : false}
+                focused={state.index === index}
               />
             );
           })}
         </ScrollView>
       </Block>
+
+      {/* Дополнительные элементы (Sign In и Sign Up) */}
       <Block flex={0.3} style={{ paddingLeft: 7, paddingRight: 14 }}>
         <DrawerCustomItem
           title="Sign In"
           navigation={navigation}
-          focused={state.index === 8 ? true : false}
+          focused={state.index === 8}
         />
         <DrawerCustomItem
           title="Sign Up"
           navigation={navigation}
-          focused={state.index === 9 ? true : false}
+          focused={state.index === 9}
         />
       </Block>
     </Block>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -107,10 +112,6 @@ const styles = StyleSheet.create({
     paddingBottom: theme.SIZES.BASE,
     paddingTop: theme.SIZES.BASE * 2,
     justifyContent: 'center',
-  },
-  footer: {
-    paddingHorizontal: 28,
-    justifyContent: 'flex-end'
   },
   profile: {
     marginBottom: theme.SIZES.BASE / 2,

@@ -1,3 +1,4 @@
+ // Необходимые модули
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -8,23 +9,23 @@ import {
   DrawerItems,
 } from 'react-navigation';
 
-// screens
-import Article from './src/screens/Article';
-import ArticleCover from './src/screens/ArticleCover';
-import Cards from './src/screens/Cards';
-import Components from './src/screens/Components';
-import Login from './src/screens/Login';
-import News from './src/screens/News';
+// Экраны
+import Article from './screens/Article';
+import ArticleCover from './screens/ArticleCover';
+import Cards from './screens/Cards';
+import Components from './screens/Components';
+import Login from './screens/Login';
+import News from './screens/News';
 import OrderConfirmed from './src/screens/OrderConfirmed';
-import Presentation from './src/screens/Presentation';
-import Dashboard from './src/screens/Dashboard';
-import Register from './src/screens/Register';
-import Registerv2 from './src/screens/Registerv2';
-import Grid from './src/screens/Grid';
-
+import Presentation from './screens/Presentation';
+import Dashboard from './screens/Dashboard';
+import Register from './screens/Register';
+import Registerv2 from './screens/Registerv2';
+import Grid from './screens/Grid';
+// Тема
 import theme from './src/theme';
 import { Block, Icon, Text } from 'galio-framework';
-
+// определяем внешний вид и структуру бокового меню
 const GalioDrawer = props => (
   <SafeAreaView style={styles.drawer} forceInset={{ top: 'always', horizontal: 'never' }}>
     <Block space="between" row style={styles.header}>
@@ -39,7 +40,7 @@ const GalioDrawer = props => (
     </ScrollView>
   </SafeAreaView>
 );
-
+// Стили для drawer, header, avatar, и middle определяют внешний вид бокового меню
 const styles = StyleSheet.create({
   drawer: {
     flex: 1,
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
+// Компонент MenuIcon определяет иконки для пунктов меню в боковом навигаторе.
 const MenuIcon = ({ name, family, focused }) => (
   <Icon
     name={name}
@@ -82,7 +83,7 @@ MenuIcon.propTypes = {
   family: PropTypes.string,
   focused: PropTypes.bool,
 };
-
+// Определяем экраны, которые будут доступны в боковом навигаторе
 const screens = {
   Home: {
     screen: Components,
@@ -173,7 +174,7 @@ const screens = {
   },
   */
 };
-
+// Параметры для бокового навигатора, включая стилизацию меток, активных элементов и иконок
 const options = {
   contentComponent: props => <GalioDrawer {...props} />,
   contentOptions: {
@@ -197,7 +198,7 @@ const options = {
     },
   },
 };
-
+// Создается боковой навигатор с помощью createDrawerNavigator, используя экраны и параметры
 const GalioApp = createDrawerNavigator(screens, options);
 
 export default GalioApp;
