@@ -4,17 +4,17 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// galio components
+// Galio components
 import {
   Text, Block, Button, Card, NavBar, Input, Icon
 } from 'galio-framework';
-import theme from '../theme';
+import theme from '../theme'; // импорт темы из файла
 
-const { width } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen'); // получение ширины экрана
 
 export default class Components extends React.Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation } = this.props; // получение навигации из пропсов
     return (
       <Block safe flex>
         <NavBar
@@ -27,11 +27,11 @@ export default class Components extends React.Component {
               iconSize={theme.SIZES.BASE}
               iconColor={theme.COLORS.ICON}
               color="transparent"
-              onPress={() => Linking.openURL('https://galio.io')}
+              onPress={() => Linking.openURL('https://galio.io')} // открытие ссылки на сайт Galio
             />
           )}
           left={(
-            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}> {/* открытие бокового меню */}
               <Icon 
                 name="menu"
                 family="feather"
@@ -40,12 +40,12 @@ export default class Components extends React.Component {
               />
             </TouchableOpacity>
           )}
-          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null} // отступ для Android
         />
 
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <Block style={styles.container}>
-            {/* Buttons examples using Button component */}
+            {/* Примеры кнопок с использованием компонента Button */}
             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
                 <Text h5>Buttons</Text>
@@ -68,7 +68,7 @@ export default class Components extends React.Component {
                 </Button>
               </Block>
             </Block>
-            {/* Typography examples using Text component */}
+            {/* Примеры типографики с использованием компонента Text */}
             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
                 <Text h5>Typography</Text>
@@ -85,7 +85,7 @@ export default class Components extends React.Component {
                 </Text>
               </Block>
             </Block>
-            {/* Inputs examples using Input component */}
+            {/* Примеры инпутов с использованием компонента Input */}
             <Block flex>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
                 <Text h5>Inputs</Text>
@@ -134,7 +134,7 @@ export default class Components extends React.Component {
                 />
               </Block>
             </Block>
-            {/* NavBars examples using NavBar component */}
+            {/* Примеры навигационных баров с использованием компонента NavBar */}
             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
                 <Text h5>Navigation</Text>
@@ -245,7 +245,7 @@ export default class Components extends React.Component {
                 />
               </Block>
             </Block>
-            {/* Cards examples using Card/Block component */}
+            {/* Примеры карточек с использованием компонентов Card и Block */}
             <Block flex>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
                 <Text h5>Cards</Text>
@@ -291,7 +291,7 @@ export default class Components extends React.Component {
                   imageStyle={{ height: theme.SIZES.BASE * 13.75 }}
                   image="https://images.unsplash.com/photo-1506321806993-0e39f809ae59?&w=1200&h=1200&fit=crop&crop=entropy&q=300"
                 >
-                  <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.cardGradient} />
+                  <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.cardGradient} /> {/* Градиент для карточки */}
                 </Card>
               </Block>
             </Block>
