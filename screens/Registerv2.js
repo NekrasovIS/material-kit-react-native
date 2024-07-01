@@ -6,7 +6,6 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-// galio component
 import {
   Block, Button, Input, Text, NavBar,
 } from 'galio-framework';
@@ -26,14 +25,18 @@ class Registerv2 extends React.Component {
     password: '',
   };
 
+  // Обработчик для открытия бокового меню
   handleGoBack = () => this.props.navigation.openDrawer();
 
+  // Обработчик для изменения состояния ввода
   handleChange = (name, value) => {
     this.setState({ [name]: value });
   };
 
+  // Обработчик для нажатий на социальные кнопки
   handleOnPressSocial = () => Alert.alert('Oops', 'Not Implementated');
 
+  // Обработчик для нажатия на кнопку "Sign Up"
   handleSignUp = () => {
     const {
       name, lastName, email, password,
@@ -45,166 +48,170 @@ class Registerv2 extends React.Component {
     Password: ${password}`);
   }
 
-  handleSignIn = () => this.props.navigation.navigate('Login')
+  // Обработчик для перехода на экран входа
+  handleSignIn = () => this.props.navigation.navigate('Login');
 
   render() {
     return (
-      <Block safe flex style={styles.container}>
-        <NavBar
-          transparent
-          back
-          leftStyle={{ marginLeft: MARGIN_LEFT }}
-          leftIconColor={theme.COLORS.GREY}
-          onLeftPress={this.handleGoBack}
-        />
-        <ScrollView style={styles.flex} keyboardShouldPersistTaps="handled">
-          <KeyboardAvoidingView
-            behavior="position"
-            keyboardVerticalOffset={5}
-          >
-            <Header title="Create new account" />
-            <Block flex>
-              <SocialButtons
-                onPressFacebook={this.handleOnPressSocial}
-                onPressTwitter={this.handleOnPressSocial}
-                onPressInstagram={this.handleOnPressSocial}
-              />
-              <Text muted center size={theme.SIZES.FONT * 0.875}>
-                or Sign Up with email
-              </Text>
-            </Block>
-            <Block flex middle>
-              <Form handleChange={this.handleChange} />
-              <SignButtons
-                handleSignIn={this.handleSignIn}
-                handleSignUp={this.handleSignUp}
-              />
-            </Block>
-          </KeyboardAvoidingView>
-        </ScrollView>
-      </Block>
+        <Block safe flex style={styles.container}>
+          <NavBar
+              transparent
+              back
+              leftStyle={{ marginLeft: MARGIN_LEFT }}
+              leftIconColor={theme.COLORS.GREY}
+              onLeftPress={this.handleGoBack}
+          />
+          <ScrollView style={styles.flex} keyboardShouldPersistTaps="handled">
+            <KeyboardAvoidingView
+                behavior="position"
+                keyboardVerticalOffset={5}
+            >
+              <Header title="Create new account" />
+              <Block flex>
+                <SocialButtons
+                    onPressFacebook={this.handleOnPressSocial}
+                    onPressTwitter={this.handleOnPressSocial}
+                    onPressInstagram={this.handleOnPressSocial}
+                />
+                <Text muted center size={theme.SIZES.FONT * 0.875}>
+                  or Sign Up with email
+                </Text>
+              </Block>
+              <Block flex middle>
+                <Form handleChange={this.handleChange} />
+                <SignButtons
+                    handleSignIn={this.handleSignIn}
+                    handleSignUp={this.handleSignUp}
+                />
+              </Block>
+            </KeyboardAvoidingView>
+          </ScrollView>
+        </Block>
     );
   }
 }
 
+// Компонент для отображения заголовка
 const Header = ({ title }) => (
-  <Block left style={styles.header}>
-    <Text h3>{title}</Text>
-  </Block>
+    <Block left style={styles.header}>
+      <Text h3>{title}</Text>
+    </Block>
 );
 
+// Компонент для отображения социальных кнопок
 const SocialButtons = ({
-  onPressFacebook,
-  onPressTwitter,
-  onPressInstagram,
-}) => (
-  <Block
-    row
-    center
-    space="between"
-    style={styles.socialContainer}
-  >
-    <Block flex middle right>
-      <Button
-        round
-        onlyIcon
-        iconSize={SOCIAL_ICON_SIZE}
-        icon="facebook"
-        iconFamily="FontAwesome"
-        onPress={onPressFacebook}
-        color={theme.COLORS.FACEBOOK}
-        shadowColor={theme.COLORS.FACEBOOK}
-        iconColor={theme.COLORS.WHITE}
-        style={styles.social}
-      />
+                         onPressFacebook,
+                         onPressTwitter,
+                         onPressInstagram,
+                       }) => (
+    <Block
+        row
+        center
+        space="between"
+        style={styles.socialContainer}
+    >
+      <Block flex middle right>
+        <Button
+            round
+            onlyIcon
+            iconSize={SOCIAL_ICON_SIZE}
+            icon="facebook"
+            iconFamily="FontAwesome"
+            onPress={onPressFacebook}
+            color={theme.COLORS.FACEBOOK}
+            shadowColor={theme.COLORS.FACEBOOK}
+            iconColor={theme.COLORS.WHITE}
+            style={styles.social}
+        />
+      </Block>
+      <Block flex middle center>
+        <Button
+            round
+            onlyIcon
+            iconSize={SOCIAL_ICON_SIZE}
+            icon="twitter"
+            iconFamily="FontAwesome"
+            onPress={onPressTwitter}
+            color={theme.COLORS.TWITTER}
+            shadowColor={theme.COLORS.TWITTER}
+            iconColor={theme.COLORS.WHITE}
+            style={styles.social}
+        />
+      </Block>
+      <Block flex middle left>
+        <Button
+            round
+            onlyIcon
+            iconSize={SOCIAL_ICON_SIZE}
+            icon="instagram"
+            iconFamily="FontAwesome"
+            onPress={onPressInstagram}
+            color={theme.COLORS.DRIBBBLE}
+            shadowColor={theme.COLORS.DRIBBBLE}
+            iconColor={theme.COLORS.WHITE}
+            style={styles.social}
+        />
+      </Block>
     </Block>
-    <Block flex middle center>
-      <Button
-        round
-        onlyIcon
-        iconSize={SOCIAL_ICON_SIZE}
-        icon="twitter"
-        iconFamily="FontAwesome"
-        onPress={onPressTwitter}
-        color={theme.COLORS.TWITTER}
-        shadowColor={theme.COLORS.TWITTER}
-        iconColor={theme.COLORS.WHITE}
-        style={styles.social}
-      />
-    </Block>
-    <Block flex middle left>
-      <Button
-        round
-        onlyIcon
-        iconSize={SOCIAL_ICON_SIZE}
-        icon="instagram"
-        iconFamily="FontAwesome"
-        onPress={onPressInstagram}
-        color={theme.COLORS.DRIBBBLE}
-        shadowColor={theme.COLORS.DRIBBBLE}
-        iconColor={theme.COLORS.WHITE}
-        style={styles.social}
-      />
-    </Block>
-  </Block>
 );
 
-
+// Компонент для формы регистрации
 const Form = ({ handleChange }) => (
-  <Block style={{ marginBottom: 20 }}>
-    <Input
-      borderless
-      placeholder="Name"
-      style={styles.input}
-      onChangeText={text => handleChange('name', text)}
-    />
-    <Input
-      borderless
-      placeholder="Last name"
-      style={styles.input}
-      onChangeText={text => handleChange('lastName', text)}
-    />
-    <Input
-      borderless
-      type="email-address"
-      placeholder="Email"
-      autoCapitalize="none"
-      style={styles.input}
-      onChangeText={text => handleChange('email', text)}
-    />
-    <Input
-      borderless
-      password
-      viewPass
-      placeholder="Password"
-      style={styles.input}
-      onChangeText={text => handleChange('password', text)}
-    />
-  </Block>
+    <Block style={{ marginBottom: 20 }}>
+      <Input
+          borderless
+          placeholder="Name"
+          style={styles.input}
+          onChangeText={text => handleChange('name', text)}
+      />
+      <Input
+          borderless
+          placeholder="Last name"
+          style={styles.input}
+          onChangeText={text => handleChange('lastName', text)}
+      />
+      <Input
+          borderless
+          type="email-address"
+          placeholder="Email"
+          autoCapitalize="none"
+          style={styles.input}
+          onChangeText={text => handleChange('email', text)}
+      />
+      <Input
+          borderless
+          password
+          viewPass
+          placeholder="Password"
+          style={styles.input}
+          onChangeText={text => handleChange('password', text)}
+      />
+    </Block>
 );
 
+// Компонент для кнопок регистрации и входа
 const SignButtons = ({ handleSignUp, handleSignIn }) => (
-  <Block flex center style={{ marginBottom: 20 }}>
-    <Button
-      shadowless
-      style={styles.button}
-      round
-      color="info"
-      onPress={handleSignUp}
-    >
-      Sign up
-    </Button>
-    <Button
-      round
-      color="transparent"
-      style={[styles.button, styles.borderColor]}
-      onPress={handleSignIn}
-    >
-      <Text center color={theme.COLORS.BLACK}>
-        Sign In
-      </Text>
-    </Button>
-  </Block>
+    <Block flex center style={{ marginBottom: 20 }}>
+      <Button
+          shadowless
+          style={styles.button}
+          round
+          color="info"
+          onPress={handleSignUp}
+      >
+        Sign up
+      </Button>
+      <Button
+          round
+          color="transparent"
+          style={[styles.button, styles.borderColor]}
+          onPress={handleSignIn}
+      >
+        <Text center color={theme.COLORS.BLACK}>
+          Sign In
+        </Text>
+      </Button>
+    </Block>
 );
 
 const styles = StyleSheet.create({

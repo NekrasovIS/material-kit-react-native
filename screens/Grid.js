@@ -2,22 +2,25 @@ import React from 'react';
 import {
   Dimensions, StyleSheet, Platform,
 } from 'react-native';
-// galio components
+// Импортируем компоненты из galio-framework
 import {
   Button, Icon, Block, Text, NavBar,
 } from 'galio-framework';
-import theme from '../theme';
+import theme from '../theme'; // Импортируем тему
 
+// Получаем ширину экрана
 const { width } = Dimensions.get('screen');
-const BASE_SIZE = theme.SIZES.BASE;
-const COLOR_WHITE = theme.COLORS.WHITE;
+const BASE_SIZE = theme.SIZES.BASE; // Базовый размер из темы
+const COLOR_WHITE = theme.COLORS.WHITE; // Белый цвет из темы
 
+// Функция для разбивки массива на подмассивы заданного размера
 const chunk = (arr, size) => {
   const list = new Array(Math.ceil(arr.length / size)).fill()
-    .map(() => arr.splice(0, size));
+      .map(() => arr.splice(0, size));
   return list;
 };
 
+// Данные для сетки
 const grids = [
   {
     title: 'Facebook',
@@ -83,39 +86,41 @@ const grids = [
 
 class Grid extends React.Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation } = this.props; // Получаем навигацию из props
     return (
-      <Block safe flex>
-        <NavBar
-          fix
-          title="Grid"
-          onLeftPress={() => navigation.openDrawer()}
-          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
-        />
-        <Block style={styles.grid}>
-          {
-            chunk(grids, 3).map((row, rowId) => (
-              <Block row space="evenly" key={`row-${rowId}`}>
-                {
-                  row.map(grid => (
-                    <Block shadow middle style={styles.block} key={`grid-${grid.title}}`}>
-                      <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                        <Block flex middle>
-                          <Icon name={grid.icon} family={grid.family} size={BASE_SIZE * 1.875} />
-                          <Text size={BASE_SIZE * 0.875}>
-                            {grid.title}
-                            {' '}
-                          </Text>
-                        </Block>
-                      </Button>
-                    </Block>
-                  ))
-                }
-              </Block>
-            ))
-          }
+        <Block safe flex>
+          {/* Навигационная панель */}
+          <NavBar
+              fix
+              title="Grid"
+              onLeftPress={() => navigation.openDrawer()}
+              style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+          />
+          <Block style={styles.grid}>
+            {
+              // Разбиваем данные на строки по 3 элемента в каждой
+              chunk(grids, 3).map((row, rowId) => (
+                  <Block row space="evenly" key={`row-${rowId}`}>
+                    {
+                      row.map(grid => (
+                          <Block shadow middle style={styles.block} key={`grid-${grid.title}}`}>
+                            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+                              <Block flex middle>
+                                <Icon name={grid.icon} family={grid.family} size={BASE_SIZE * 1.875} />
+                                <Text size={BASE_SIZE * 0.875}>
+                                  {grid.title}
+                                  {' '}
+                                </Text>
+                              </Block>
+                            </Button>
+                          </Block>
+                      ))
+                    }
+                  </Block>
+              ))
+            }
+          </Block>
         </Block>
-      </Block>
     );
   }
 }

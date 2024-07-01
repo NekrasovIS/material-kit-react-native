@@ -1,12 +1,21 @@
+// URL для изображения на экране онбординга
 const Onboarding = 'https://images.unsplash.com/photo-1505995433366-e12047f3f144?fit=crop&w=840&q=80';
+
+// URL для изображения на экране Pro версии
 const Pro = 'https://images.unsplash.com/photo-1485796826113-174aa68fd81b?fit=crop&w=840&q=80';
+
+// Объект с URL изображений продуктов, в данном случае аксессуаров
 const Products = {
   'Accessories': 'https://source.unsplash.com//l1MCA0VyNrk/840x840',
 };
 
+// URL для изображения профиля пользователя
 const Profile = 'https://images.unsplash.com/photo-1512529920731-e8abaea917a5?fit=crop&w=840&q=80';
+
+// URL для аватара пользователя
 const Avatar = 'https://images.unsplash.com/photo-1518725522904-4b3939358342?fit=crop&w=210&q=80';
 
+// Массив URL-адресов для изображений просмотренных товаров
 const Viewed = [
   'https://images.unsplash.com/photo-1508264443919-15a31e1d9c1a?fit=crop&w=240&q=80',
   'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?fit=crop&w=240&q=80',
@@ -16,6 +25,7 @@ const Viewed = [
   'https://images.unsplash.com/photo-1542068829-1115f7259450?fit=crop&w=240&q=80',
 ];
 
+// Экспорт всех констант в одном объекте
 export default {
   Onboarding,
   Pro,
@@ -23,4 +33,4 @@ export default {
   Profile,
   Viewed,
   Avatar,
-}
+};

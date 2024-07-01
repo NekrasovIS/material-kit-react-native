@@ -4,14 +4,15 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// Galio components
+// Импорт компонентов Galio Framework
 import {
   Card, Block, NavBar, Icon
 } from 'galio-framework';
-import theme from '../theme';
+import theme from '../theme'; // Импорт темы приложения
 
-const { width } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen'); // Получение ширины экрана устройства
 
+// Массив объектов карточек для отображения
 const cards = [
   {
     id: 1,
@@ -65,57 +66,64 @@ const cards = [
   },
 ];
 
+// Основной компонент для отображения карточек
 export default class Cards extends React.Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation } = this.props; // Деструктуризация объекта навигации из props
     return (
-      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar
-          title="Cards"
-          left={(
-            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-              <Icon 
-                name="menu"
-                family="feather"
-                size={theme.SIZES.BASE}
-                color={theme.COLORS.ICON}
-              />
-            </TouchableOpacity>
-          )}
-          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
-        />
-        <ScrollView contentContainerStyle={styles.cards}>
-          <Block flex space="between">
-            {cards && cards.map((card, id) => (
-              <Card
-                key={`card-${card.image}`}
-                flex
-                borderless
-                shadowColor={theme.COLORS.BLACK}
-                titleColor={card.full ? theme.COLORS.WHITE : null}
-                style={styles.card}
-                title={card.title}
-                caption={card.caption}
-                location={card.location}
-                avatar={`${card.avatar}?${id}`}
-                image={card.image}
-                imageStyle={[card.padded ? styles.rounded : null]}
-                imageBlockStyle={[
-                  card.padded ? { padding: theme.SIZES.BASE / 2 } : null,
-                  card.full ? null : styles.noRadius,
-                ]}
-                footerStyle={card.full ? styles.full : null}
-              >
-                {card.full ? <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.gradient} /> : null}
-              </Card>
-            ))}
-          </Block>
-        </ScrollView>
-      </Block>
+        <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+          {/* Навигационная панель */}
+          <NavBar
+              title="Cards"
+              left={(
+                  <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                    <Icon
+                        name="menu"
+                        family="feather"
+                        size={theme.SIZES.BASE}
+                        color={theme.COLORS.ICON}
+                    />
+                  </TouchableOpacity>
+              )}
+              style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+          />
+
+          {/* Прокручиваемый список карточек */}
+          <ScrollView contentContainerStyle={styles.cards}>
+            <Block flex space="between">
+              {/* Отображение каждой карточки из массива cards */}
+              {cards && cards.map((card, id) => (
+                  <Card
+                      key={`card-${card.image}`}
+                      flex
+                      borderless
+                      shadowColor={theme.COLORS.BLACK}
+                      titleColor={card.full ? theme.COLORS.WHITE : null}
+                      style={styles.card}
+                      title={card.title}
+                      caption={card.caption}
+                      location={card.location}
+                      avatar={`${card.avatar}?${id}`}
+                      image={card.image}
+                      imageStyle={[card.padded ? styles.rounded : null]}
+                      imageBlockStyle={[
+                        card.padded ? { padding: theme.SIZES.BASE / 2 } : null,
+                        card.full ? null : styles.noRadius,
+                      ]}
+                      footerStyle={card.full ? styles.full : null}
+                  >
+                    {/* Добавление градиента для карточек с флагом full */}
+                    {card.full ? <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.gradient} /> : null}
+                  </Card>
+              ))}
+            </Block>
+          </ScrollView>
+        </Block>
     );
   }
 }
 
+// Стили для компонентов
 const styles = StyleSheet.create({
   cards: {
     width,

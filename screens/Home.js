@@ -2,79 +2,83 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
-import { Icon, Product } from '../components/';
+import { Icon, Product } from '../components/'; // Импортируем Icon и Product компоненты
 
-const { width } = Dimensions.get('screen');
-import products from '../constants/products';
+const { width } = Dimensions.get('screen'); // Получаем ширину экрана
+import products from '../constants/products'; // Импортируем список продуктов
 
 export default class Home extends React.Component {
+  // Метод для отображения поискового ввода
   renderSearch = () => {
-    const { navigation } = this.props;
-    const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
+    const { navigation } = this.props; // Получаем навигацию из props
+    const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />; // Иконка камеры для поискового ввода
 
     return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        iconContent={iconCamera}
-        placeholder="What are you looking for?"
-        onFocus={() => navigation.navigate('Pro')}
-      />
-    )
+        <Input
+            right
+            color="black"
+            style={styles.search}
+            iconContent={iconCamera}
+            placeholder="What are you looking for?"
+            onFocus={() => navigation.navigate('Pro')} // Навигация при фокусе на поле ввода
+        />
+    );
   }
-  
+
+  // Метод для отображения вкладок
   renderTabs = () => {
-    const { navigation } = this.props;
+    const { navigation } = this.props; // Получаем навигацию из props
 
     return (
-      <Block row style={styles.tabs}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon name="grid" family="feather" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Categories</Text>
-          </Block>
-        </Button>
-        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Best Deals</Text>
-          </Block>
-        </Button>
-      </Block>
-    )
+        <Block row style={styles.tabs}>
+          <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
+            <Block row middle>
+              <Icon name="grid" family="feather" style={{ paddingRight: 8 }} />
+              <Text size={16} style={styles.tabTitle}>Categories</Text>
+            </Block>
+          </Button>
+          <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
+            <Block row middle>
+              <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
+              <Text size={16} style={styles.tabTitle}>Best Deals</Text>
+            </Block>
+          </Button>
+        </Block>
+    );
   }
 
+  // Метод для отображения списка продуктов
   renderProducts = () => {
     return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.products}>
-        <Block flex>
-          <Product product={products[0]} horizontal />
-          <Block flex row>
-            <Product product={products[1]} style={{ marginRight: theme.SIZES.BASE }} />
-            <Product product={products[2]} />
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.products}>
+          <Block flex>
+            <Product product={products[0]} horizontal />
+            <Block flex row>
+              <Product product={products[1]} style={{ marginRight: theme.SIZES.BASE }} />
+              <Product product={products[2]} />
+            </Block>
+            <Product product={products[3]} horizontal />
+            <Product product={products[4]} full />
           </Block>
-          <Product product={products[3]} horizontal />
-          <Product product={products[4]} full />
-        </Block>
-      </ScrollView>
-    )
+        </ScrollView>
+    );
   }
 
+  // Основной метод рендеринга
   render() {
     return (
-      <Block flex center style={styles.home}>
-        {this.renderProducts()}
-      </Block>
+        <Block flex center style={styles.home}>
+          {this.renderProducts()} {/* Вызываем метод для отображения продуктов */}
+        </Block>
     );
   }
 }
 
 const styles = StyleSheet.create({
   home: {
-    width: width,    
+    width: width,
   },
   search: {
     height: 48,
